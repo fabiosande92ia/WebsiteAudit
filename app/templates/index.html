@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Audit Tool</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="layout">
+        <aside class="sidebar">
+            <h2>Recent Audits</h2>
+            <ul id="audits-list" class="audits-list">
+                <!-- Audit items will be populated here -->
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <header>
+                <h1>Website Audit Tool</h1>
+            </header>
+
+            <section class="audit-form-section">
+                <form id="audit-form" class="audit-form">
+                    <input type="url" id="url-input" placeholder="https://example.com" required>
+                    <button type="submit">Run Audit</button>
+                </form>
+                <div id="status-message" class="status-message"></div>
+            </section>
+
+            <section id="results-section" class="results-section hidden">
+                <div class="results-header">
+                    <h2>Audit Results for <span id="result-url"></span></h2>
+                    <span id="result-status" class="status-badge"></span>
+                </div>
+
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <h3>Performance</h3>
+                        <div class="score" id="score-performance">--</div>
+                    </div>
+                    <div class="metric-card">
+                        <h3>Accessibility</h3>
+                        <div class="score" id="score-accessibility">--</div>
+                    </div>
+                    <div class="metric-card">
+                        <h3>Best Practices</h3>
+                        <div class="score" id="score-best-practices">--</div>
+                    </div>
+                    <div class="metric-card">
+                        <h3>SEO</h3>
+                        <div class="score" id="score-seo">--</div>
+                    </div>
+                </div>
+
+                <div class="detailed-metrics">
+                    <div class="detail-section">
+                        <h3>Lighthouse Metrics</h3>
+                        <ul>
+                            <li><strong>First Contentful Paint:</strong> <span id="metric-fcp">--</span> ms</li>
+                            <li><strong>Largest Contentful Paint:</strong> <span id="metric-lcp">--</span> ms</li>
+                            <li><strong>Cumulative Layout Shift:</strong> <span id="metric-cls">--</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="detail-section">
+                        <h3>Security Headers</h3>
+                        <table class="security-table">
+                            <tbody>
+                                <tr>
+                                    <td>Strict-Transport-Security (HSTS)</td>
+                                    <td id="security-hsts">--</td>
+                                </tr>
+                                <tr>
+                                    <td>Content-Security-Policy</td>
+                                    <td id="security-csp">--</td>
+                                </tr>
+                                <tr>
+                                    <td>X-Frame-Options</td>
+                                    <td id="security-xframe">--</td>
+                                </tr>
+                                <tr>
+                                    <td>X-Content-Type-Options</td>
+                                    <td id="security-xcontent">--</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>

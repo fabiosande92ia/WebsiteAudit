@@ -1,6 +1,9 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 import logging
 import sys
+import os
 
 from .database import engine, Base
 from .api import routes
@@ -24,6 +27,14 @@ app = FastAPI(
 )
 
 app.include_router(routes.router, prefix="/api/v1")
+
+# Setup static files and templates
+app.mount("/static", StaticFiles(directory="app/static"), name="static")
+templates = Jinja2Templates(directory="app/templates")
+
+@app.get("/", tags=["Frontend"])
+async def read_root(request: Request):
+    return templates.TemplateResponse(request=request, name="index.html")
 
 @app.get("/health", tags=["Health"])
 def health_check():
